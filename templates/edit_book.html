@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book</title>
+</head>
+<body>
+    <h1>Edit Book</h1>
+    <form method="POST" action="{{ url_for('edit_book', id=book.id) }}">
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="{{ book.title }}" required><br><br>
+
+        <label for="author">Author:</label>
+        <input type="text" name="author" value="{{ book.author }}" required><br><br>
+
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" value="{{ book.stock }}" required><br><br>
+
+        <input type="submit" value="Update Book">
+    </form>
+    <br>
+    <a href="{{ url_for('list_books') }}">Back to Book List</a>
+</body>
+</html>

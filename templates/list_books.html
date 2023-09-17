@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Books</title>
+</head>
+<body>
+    <h1>List of Books</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} by {{ book.author }} - Stock: {{ book.stock }}
+
+                <form method="GET" action="{{ url_for('edit_book', id=book.id) }}" style="display: inline;">
+                    <input type="submit" value="Edit">
+                </form>
+
+                <form method="POST" action="{{ url_for('delete_book', id=book.id) }}" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete">
+                </form>
+
+                {% if book.transactions %}
+                    <form method="POST" action="{{ url_for('return_book_route') }}" style="display: inline;">
+                        <input type="hidden" name="transaction_id" value="{{ book.transactions[0].id }}">
+                        <input type="submit" value="Return Book">
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_book') }}">Add a Book</a>
+
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home Page</a>
+</body>
+</html>

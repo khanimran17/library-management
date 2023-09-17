@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body>
+    <h1>Welcome to the Library Management System</h1>
+    <ul>
+        <li><a href="{{ url_for('list_books') }}">List Books</a></li>
+        <li><a href="{{ url_for('list_members') }}">List Members</a></li>
+    </ul>
+
+    <h2>Issue a Book</h2>
+    <form method="POST" action="{{ url_for('issue_book_route') }}">
+        <label for="member_id">Member ID:</label>
+        <input type="text" id="member_id" name="member_id" required><br>
+
+        <label for="book_id">Book ID:</label>
+        <input type="text" id="book_id" name="book_id" required><br>
+
+        <input type="submit" value="Issue Book">
+    </form>
+
+    <h2>Import Books</h2>
+    <a href="{{ url_for('import_books_form') }}">Import Books</a>
+</body>
+</html>
